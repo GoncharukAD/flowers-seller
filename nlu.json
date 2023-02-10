@@ -1,7 +1,7 @@
 {
   "project" : {
-    "id" : "zb-jgraph-cailapub",
-    "name" : "zb-jgraph-cailapub",
+    "id" : "prodavets_tsvetov-1000072559-TkE",
+    "name" : "prodavets_tsvetov-1000072559-TkE",
     "folder" : "/jaicp"
   },
   "settings" : {
@@ -17,7 +17,6 @@
     "shared" : false
   },
   "intents" : [ {
-    "id" : 11239672,
     "path" : "/Оставить отзыв",
     "enabled" : true,
     "shared" : false,
@@ -34,11 +33,13 @@
     }, {
       "text" : "оставить отзыв"
     } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
     "patterns" : [ ],
     "priority" : 0
   }, {
-    "id" : 11239539,
-    "path" : "/Статус заказа",
+    "path" : "/Сдел",
     "enabled" : true,
     "shared" : false,
     "phrases" : [ {
@@ -48,19 +49,23 @@
     }, {
       "text" : "когда прибудет курьер?"
     } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
     "patterns" : [ ],
     "priority" : 0
   }, {
-    "id" : 11239969,
     "path" : "/Номер заказа",
     "description" : "В этом интенте мы используем системную сущность «номер» (@duckling.number) вместо примеров фраз. Так интент будет срабатывать при вводе пользователем числа, например «42» или «сорок два».",
     "enabled" : true,
     "shared" : false,
     "phrases" : [ ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
     "patterns" : [ "@duckling.number" ],
     "priority" : 0
   }, {
-    "id" : 11239542,
     "path" : "/Часы работы",
     "enabled" : true,
     "shared" : false,
@@ -77,10 +82,38 @@
     }, {
       "text" : "как вы работаете?"
     } ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
+    "patterns" : [ ],
+    "priority" : 0
+  }, {
+    "path" : "/Сделать заказ",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ ],
+    "classificationRules" : {
+      "refs" : [ ]
+    },
     "patterns" : [ ],
     "priority" : 0
   } ],
-  "entities" : [ ],
+  "entities" : [ {
+    "entity" : {
+      "name" : "Новая_сущность",
+      "enabled" : true,
+      "shared" : false,
+      "type" : "annotation",
+      "priority" : 1,
+      "noSpelling" : true,
+      "noMorph" : false,
+      "phoneticSearch" : false,
+      "fuzzySearch" : false,
+      "client" : false,
+      "hidden" : false
+    },
+    "records" : [ ]
+  } ],
   "enabledSystemEntities" : [ "duckling.number", "duckling.time", "duckling.duration", "duckling.phone-number", "duckling.email", "duckling.url" ],
   "spellerDictionary" : [ ],
   "systemEntities" : [ {
@@ -185,5 +218,6 @@
   }, {
     "name" : "zb.number",
     "enabled" : false
-  } ]
+  } ],
+  "faq" : [ ]
 }
