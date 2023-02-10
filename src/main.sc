@@ -22,7 +22,7 @@ theme: /
             script:
                 $client.city = $request.query;
                 $session.cart = [];
-            go!: /ChooseFlowers
+            go!: /ChooseFlowers/ClickButtons
 
         state: ClickButtons
             q: *
