@@ -60,7 +60,15 @@ theme: /
         event: telegramSendContact
         script:
             $client.phone_number = $request.rawRequest.message.contact.phone_number;
+            
+        state: SendOrder
+            script:
+                $reactions.answer($http.query('https://api.telegram.org/5853333291:AAGPTVcZHSB8OZbY2gR5u7J7Srpx9U-f0og/sendMessage?chat_id=434238631&text=Hello+World');
+            
         a: Спасибо! Наш менеджер свяжется с вами по номеру телефона {{ $client.phone_number }}.
+        
+
+    
 
     
     
