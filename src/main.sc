@@ -1,4 +1,5 @@
 require: flowers.sc
+require: pizza.sc
 require: cart.sc
 
 theme: /
@@ -23,7 +24,7 @@ theme: /
             script:
                 $client.city = $request.query;
                 $session.cart = [];
-            go!: /ChooseFlowers
+            go!: /ChoosePizza
 
         state: ClickButtons
             q: *
