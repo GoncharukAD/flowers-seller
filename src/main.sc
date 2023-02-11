@@ -1,5 +1,4 @@
 require: flowers.sc
-#require: pizza.sc
 require: cart.sc
 
 theme: /

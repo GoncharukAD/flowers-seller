@@ -10,9 +10,9 @@ theme: /
             var n = 0;
             for(var i = 0; i < $session.cart.length; i++){
                 var current_position = $session.cart[i];
-                for(var id = 1; id < Object.keys(pizza).length + 1; id++){
-                    if (current_position.name == pizza[id].value.title){
-                        var variation = _.find(pizza[id].value.variations, function(variation){
+                for(var id = 1; id < Object.keys(flowers).length + 1; id++){
+                    if (current_position.name == flowers[id].value.title){
+                        var variation = _.find(flowers[id].value.variations, function(variation){
                             return variation.id === current_position.id;
                         });
 
@@ -36,8 +36,8 @@ theme: /
         a: Если все верно, отправьте свой номер телефона, и наш менеджер с вами свяжется.
         buttons:
             {text: "Отправить номер телефона", request_contact: true}
-            "Меню" -> /ChoosePizza
-
+            "Меню" -> /ChooseFlowers
+ 
         state: Edit
             event: telegramCallbackQuery
             script:
@@ -49,7 +49,7 @@ theme: /
                 editText($session.messageId, 'Общая сумма заказа: ' + getTotalSum() + ' руб.');
             if: $session.cart.length == 0
                 a: Вы очистили корзину
-                go!: /ChoosePizza
+                go!: /ChooseFlowers
 
             state: ClickButtons
                 q: *
@@ -61,3 +61,6 @@ theme: /
         script:
             $client.phone_number = $request.rawRequest.message.contact.phone_number;
         a: Спасибо! Наш менеджер свяжется с вами по номеру телефона {{ $client.phone_number }}.
+
+    
+    
