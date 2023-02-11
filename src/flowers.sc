@@ -28,7 +28,7 @@ theme: /
     state: ChooseVariant
         a: Выберите, пожалуйста, вариант:
         script:
-            for (var id = 1; id < Object.keys(pizza).length + 1; id++) {
+            for (var id = 1; id < Object.keys(flowers).length + 1; id++) {
                 if ($session.flower_name == flowers[id].value.title) {
                     var variations = flowers[id].value.variations;
                     for(var i = 0; i < variations.length; i++){
@@ -39,7 +39,7 @@ theme: /
             }
         a: Для возврата в меню выбора цветов, нажмите "Меню"
         buttons:
-            "Меню" -> /ChoosePizza
+            "Меню" -> /ChooseFlowers
 
         state: ClickButtons
                 q: *
@@ -70,7 +70,7 @@ theme: /
                 $session.cart.push({name: $session.flower_name, id: $session.flower_id, quantity: $session.quantity});
             a: Хотите ли выбрать что-нибудь еще, или перейдем к оформлению заказа?
             buttons:
-                "Меню" -> /ChoosePizza
+                "Меню" -> /ChooseFlowers
             buttons:
                 "Оформить заказ" -> /Cart
 
