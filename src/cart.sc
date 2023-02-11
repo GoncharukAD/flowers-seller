@@ -36,7 +36,7 @@ theme: /
         a: Если все верно, отправьте свой номер телефона, и наш менеджер с вами свяжется.
         buttons:
             {text: "Отправить номер телефона", request_contact: true}
-            "Меню" -> /ChooseFlowers
+            "Меню" -> /ChoosePizza
 
         state: Edit
             event: telegramCallbackQuery
@@ -49,7 +49,7 @@ theme: /
                 editText($session.messageId, 'Общая сумма заказа: ' + getTotalSum() + ' руб.');
             if: $session.cart.length == 0
                 a: Вы очистили корзину
-                go!: /ChooseFlowers
+                go!: /ChoosePizza
 
             state: ClickButtons
                 q: *
@@ -61,6 +61,3 @@ theme: /
         script:
             $client.phone_number = $request.rawRequest.message.contact.phone_number;
         a: Спасибо! Наш менеджер свяжется с вами по номеру телефона {{ $client.phone_number }}.
-
-    
-    
