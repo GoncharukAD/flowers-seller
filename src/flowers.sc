@@ -8,7 +8,7 @@ theme: /
         a: Какие цветы будем заказывать сегодня?
         script:
             for (var id = 1; id < Object.keys(flowers).length + 1; id++) {
-                var regions = pizza[id].value.region;
+                var regions = flowers[id].value.region;
                 if (_.contains(regions, $client.city)) {
                     var button_name = flowers[id].value.title;
                     $reactions.buttons({text: button_name, transition: 'GetName'})
