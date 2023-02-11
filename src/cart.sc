@@ -61,13 +61,37 @@ theme: /
         script:
             $client.phone_number = $request.rawRequest.message.contact.phone_number;
             
-        state: SendOrder
-            script:
-                $reactions.answer($http.query('https://api.telegram.org/5853333291:AAGPTVcZHSB8OZbY2gR5u7J7Srpx9U-f0og/sendMessage').data.text);
+        state: WriteDataToCells 
+            q!: WriteDataToCells 
             
+            
+            script:
+                values = [$client.city,
+                $integration.googleSheets.writeDataToLine(
+                    "integrationId",
+                    "1QnCnl_asxbkzpb7OP6W1Y-J9DIRSIQmxzYIP-J02WRQ",
+                    "Orders",
+                    ["", "", "78121683203"]
+                );
+                
+      
+        state: SendOrder
+            q!: SendOrder
+            script:
+                $reactions.answer($http.query('https://api.telegram.org/5853333291:AAGPTVcZHSB8OZbY2gR5u7J7Srpx9U-f0og/sendMessage&text=Hello,%20world!').data.text);
+                
+                https://api.telegram.org/5853333291:AAGPTVcZHSB8OZbY2gR5u7J7Srpx9U-f0og/sendMessage?chat_id=434238631&text=Hello,%20world!
+                
+                #Данные для менеджера в Телеграмм
+                $client.city
+                $client
+                $client.phone_number
+                $temp.totalSum
+                
+                    
         a: Спасибо! Наш менеджер свяжется с вами по номеру телефона {{ $client.phone_number }}.
         
-
+    
     
 
     
