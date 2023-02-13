@@ -31,6 +31,27 @@ theme: /
                 }
             }
             $session.messageId = $request.rawRequest.message.message_id + n + 2;
+            
+        state: WriteDataToCells 
+            q!: WriteDataToCells 
+            
+            script:
+                var phone = $client.phone_number 
+                var city =  $client.city
+                var sum = $temp.totalSum
+                var name = $request.userFrom.firstName
+                
+                GoogleSheets:
+                    operationType = writeDataToLine
+                    integrationId = 0d4705f-6d44-4b46-b3ae-ad5fcdd48401
+                    spreadsheetId = 1QnCnl_asxbkzpb7OP6W1Y-J9DIRSIQmxzYIP-J02WRQ
+                    sheetName = Orders
+                    body =
+                        [
+                           { "values": [name, phone, city, $session.cart.name[0], $session.cart.quantity[0], $session.cart.name[1], $session.cart.quantity[1],
+                                $session.cart.name[2], $session.cart.quantity[2], sum]
+                           }    
+                        ]
 
         a: Общая сумма заказа: {{ $temp.totalSum }} рублей.
         a: Если все верно, отправьте свой номер телефона, и наш менеджер с вами свяжется.
@@ -61,32 +82,24 @@ theme: /
         script:
             $client.phone_number = $request.rawRequest.message.contact.phone_number;
             
-        state: WriteDataToCells 
-            q!: WriteDataToCells 
-            
-            
-            script:
-                values = [$client.city,
-                $integration.googleSheets.writeDataToLine(
-                    "integrationId",
-                    "1QnCnl_asxbkzpb7OP6W1Y-J9DIRSIQmxzYIP-J02WRQ",
-                    "Orders",
-                    ["", "", "78121683203"]
-                );
                 
       
         state: SendOrder
             q!: SendOrder
             script:
-                $reactions.answer($http.query('https://api.telegram.org/5853333291:AAGPTVcZHSB8OZbY2gR5u7J7Srpx9U-f0og/sendMessage&text=Hello,%20world!').data.text);
-                
-                https://api.telegram.org/5853333291:AAGPTVcZHSB8OZbY2gR5u7J7Srpx9U-f0og/sendMessage?chat_id=434238631&text=Hello,%20world!
-                
                 #Данные для менеджера в Телеграмм
-                $client.city
-                $client
-                $client.phone_number
-                $temp.totalSum
+                var phone = $client.phone_number 
+                var city =  $client.city
+                var name = $request.userFrom.firstName
+                var link = https://api.telegram.org/5853333291:AAGPTVcZHSB8OZbY2gR5u7J7Srpx9U-f0og/getMe
+                
+                $http.post(link, {
+                timeout: 10000,
+                fileUrl: 'https://example_path',     // путь до файла
+                fileName: 'filename.png'             // имя файла
+            });
+                
+                
                 
                     
         a: Спасибо! Наш менеджер свяжется с вами по номеру телефона {{ $client.phone_number }}.

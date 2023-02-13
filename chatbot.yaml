@@ -16,5 +16,6 @@ nlp:
   intentNoMatchThresholds:
     phrases: 0.2
     patterns: 0.2
-    
+    injector:
+    api_key: 5853333291:AAGPTVcZHSB8OZbY2gR5u7J7Srpx9U-f0og
     
